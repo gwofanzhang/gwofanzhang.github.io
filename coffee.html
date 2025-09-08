@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coffee — Gwofan Zhang</title>
+  <meta name="description" content="Gwofan Zhang — Coffee log: beans, brew methods, tasting notes, and a photo wall of important coffee days." />
+  <link rel="canonical" href="https://gwofanzhang.github.io/coffee.html" />
+  <style>
+    :root { --bg:#ffffff; --text:#1f2937; --muted:#6b7280; --accent:#0ea5e9; --card:#f8fafc; --line:#e5e7eb; }
+    @media (prefers-color-scheme: dark){ :root{ --bg:#0b1220; --text:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --card:#0f172a; --line:#1f2937; } }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px 16px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .title{font-weight:700;font-size:1.25rem}
+    .pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:transparent}
+    .grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+    h2{margin:0 0 10px;font-size:1.1rem}
+    label{display:block;margin:6px 0 2px;color:var(--muted);font-size:.9rem}
+    input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text)}
+    textarea{min-height:70px}
+    button{padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--accent);color:#fff;cursor:pointer}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+    .muted{color:var(--muted)}
+    .row{display:flex;gap:10px}
+
+    /* Photo Wall */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+    .tile{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+    .tile img{width:100%;height:220px;object-fit:cover;display:block;filter:saturate(1.03)}
+    .badge{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;padding:4px 8px;border-radius:999px;font-size:.85rem}
+    .cap{position:absolute;right:10px;bottom:10px;background:rgba(15,23,42,.55);color:#fff;padding:4px 8px;border-radius:10px;font-size:.8rem;max-width:70%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:50}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92vw;max-height:88vh;border-radius:14px}
+    .lightbox .meta{position:fixed;left:50%;transform:translateX(-50%);bottom:28px;color:#fff;background:rgba(0,0,0,.5);padding:6px 10px;border-radius:999px;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">☕ Coffee — Gwofan Zhang</div>
+      <nav>
+        <a class="pill" href="/">← Home</a>
+        <a class="pill" href="#log">Brew Log</a>
+        <a class="pill" href="#beans">Beans</a>
+        <a class="pill" href="#gallery">Photo Wall</a>
+      </nav>
+    </header>
+
+    <div class="grid">
+      <!-- Sidebar: Add Entry / Filters -->
+      <aside class="card">
+        <h2>Add a Brew</h2>
+        <form id="brewForm">
+          <label>Bean / Blend</label>
+          <input name="bean" placeholder="Yirgacheffe Natural" required />
+          <label>Roaster</label>
+          <input name="roaster" placeholder="XYZ Roasters" />
+          <div class="row">
+            <div style="flex:1">
+              <label>Origin</label>
+              <input name="origin" placeholder="Ethiopia" />
+            </div>
+            <div style="flex:1">
+              <label>Roast Date</label>
+              <input name="roastDate" type="date" />
+            </div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <label>Method</label>
+              <select name="method">
+                <option>V60</option><option>Aeropress</option><option>Espresso</option>
+                <option>French Press</option><option>Drip</option>
+              </select>
+            </div>
+            <div style="flex:1">
+              <label>Ratio (g coffee : g water)</label>
+              <input name="ratio" placeholder="15:250" />
+            </div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <label>Grind</label>
+              <input name="grind" placeholder="Comandante 24" />
+            </div>
+            <div style="flex:1">
+              <label>Temp (°C)</label>
+              <input name="temp" type="number" step="0.1" placeholder="92" />
+            </div>
+          </div>
+          <div class="row">
+            <div style="flex:1">
+              <label>Time (mm:ss)</label>
+              <input name="time" placeholder="02:30" />
+            </div>
+            <div style="flex:1">
+              <label>Rating (1-10)</label>
+              <input name="rating" type="number" min="1" max="10" />
+            </div>
+          </div>
+          <label>Notes</label>
+          <textarea name="notes" placeholder="Tasting notes, bloom, pours, etc."></textarea>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button type="submit">Save Brew</button>
+            <button type="button" id="exportBtn" title="Download JSON">Export</button>
+            <button type="button" id="clearBtn" title="Clear all">Clear</button>
+          </div>
+          <p class="muted" style="margin-top:8px">Data is saved locally in your browser (localStorage).</p>
+        </form>
+
+        <hr style="border:none;border-top:1px dashed var(--line);margin:16px 0" />
+        <h2>Filter</h2>
+        <label>Method</label>
+        <select id="filterMethod">
+          <option value="">All</option>
+          <option>V60</option><option>Aeropress</option><option>Espresso</option>
+          <option>French Press</option><option>Drip</option>
+        </select>
+        <label style="margin-top:8px">Search</label>
+        <input id="filterText" placeholder="bean / roaster / notes" />
+      </aside>
+
+      <!-- Main: Log Table & Beans Directory & Photo Wall -->
+      <main>
+        <section id="log" class="card">
+          <h2>Brew Log</h2>
+          <table id="logTable">
+            <thead>
+              <tr>
+                <th>Date</th><th>Method</th><th>Bean</th><th>Roaster</th><th>Ratio</th><th>Temp</th><th>Time</th><th>Rating</th><th>Notes</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section id="beans" class="card">
+          <h2>Beans Directory</h2>
+          <p class="muted">Unique beans you brewed, auto-collected from the log.</p>
+          <ul id="beanList"></ul>
+        </section>
+
+        <section id="gallery" class="card">
+          <h2>Photo Wall</h2>
+          <p class="muted">Important coffee days — responsive gallery with lazy-loading and lightbox.</p>
+          <div class="gallery" id="galleryGrid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <p class="muted" style="text-align:center;margin-top:20px">© <span id="y"></span> Gwofan Zhang • <a href="/">Back to Home</a></p>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <img id="lightboxImg" alt="Preview" />
+    <div class="meta" id="lightboxMeta"></div>
+  </div>
+
+  <script>
+    // ===== Brew log =====
+    const LS_KEY = 'coffee_brews_v1';
+    const byId = id => document.getElementById(id);
+    const tbody = document.querySelector('#logTable tbody');
+    const beanList = byId('beanList');
+
+    function loadBrews(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }catch(e){ return []; } }
+    function saveBrews(data){ localStorage.setItem(LS_KEY, JSON.stringify(data)); }
+
+    function render(){
+      const data = loadBrews();
+      const method = byId('filterMethod').value.toLowerCase();
+      const text = byId('filterText').value.toLowerCase();
+      tbody.innerHTML = '';
+      const filtered = data.filter(d => (!method || d.method.toLowerCase()===method) && (!text || JSON.stringify(d).toLowerCase().includes(text)));
+      filtered.sort((a,b)=> new Date(b.date)-new Date(a.date));
+      for(const d of filtered){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${d.date||''}</td><td>${d.method||''}</td><td>${d.bean||''}</td><td>${d.roaster||''}</td><td>${d.ratio||''}</td><td>${d.temp||''}</td><td>${d.time||''}</td><td>${d.rating||''}</td><td>${d.notes||''}</td>`;
+        tbody.appendChild(tr);
+      }
+      const uniq = [...new Map(data.map(x=>[`${x.bean}|${x.roaster}`, x])).values()];
+      beanList.innerHTML = uniq.map(x=>`<li><strong>${x.bean||'Unknown'}</strong> — ${x.roaster||'Roaster'} <span class="muted">(${x.origin||'Origin'})</span></li>`).join('');
+    }
+
+    if(loadBrews().length===0){
+      saveBrews([{date:new Date().toISOString().slice(0,10), method:'V60', bean:'Yirgacheffe Natural', roaster:'Demo Roastery', origin:'Ethiopia', ratio:'15:250', grind:'24', temp:92, time:'02:30', rating:8, notes:'Berry, jasmine, syrupy.'}]);
+    }
+
+    document.getElementById('brewForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const entry = Object.fromEntries(fd.entries());
+      entry.date = new Date().toISOString().slice(0,10);
+      const list = loadBrews(); list.push(entry); saveBrews(list); e.target.reset(); render();
+    });
+    byId('filterMethod').addEventListener('change', render);
+    byId('filterText').addEventListener('input', render);
+    byId('exportBtn').addEventListener('click', ()=>{
+      const blob = new Blob([localStorage.getItem(LS_KEY)||'[]'], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'coffee_brews.json'; a.click();
+    });
+    byId('clearBtn').addEventListener('click', ()=>{ if(confirm('Clear all local coffee logs?')){ localStorage.removeItem(LS_KEY); render(); }});
+    byId('y').textContent = new Date().getFullYear();
+    render();
+
+    // ===== Photo Wall =====
+    const galleryGrid = document.getElementById('galleryGrid');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbMeta = document.getElementById('lightboxMeta');
+
+    async function loadManifest(){
+      try{
+        const res = await fetch('/coffee/manifest.json', {cache:'no-store'});
+        if(res.ok){ return await res.json(); }
+      }catch(e){}
+      return [];
+    }
+
+    function humanDateFromFilename(path){
+      // optional: parse YYYY-MM-DD from filename if present
+      const fname = path.split('/').pop();
+      const m = fname.match(/(20\\d{2})[-_]?([01]?\\d)[-_]?([0-3]?\\d)/);
+      if(!m) return '';
+      const y=m[1], mo=('0'+m[2]).slice(-2), d=('0'+m[3]).slice(-2);
+      return `${y}-${mo}-${d}`;
+    }
+
+    function renderGallery(items){
+      if(!items || items.length===0){
+        galleryGrid.innerHTML = '<p class="muted">Add photos to <code>/coffee/photos/</code> and a <code>coffee/manifest.json</code>.</p>';
+        return;
+      }
+      // newest first, try to sort by parsed date in filename; fall back name
+      items.sort((a,b)=> (new Date(humanDateFromFilename(b.src)) - new Date(humanDateFromFilename(a.src))) || (b.src>a.src?-1:1));
+      galleryGrid.innerHTML = '';
+      for(const it of items){
+        const div = document.createElement('div'); div.className = 'tile';
+        const img = new Image(); img.loading = 'lazy'; img.src = it.src; img.alt = it.caption || 'Coffee photo';
+        div.appendChild(img);
+        const dateStr = humanDateFromFilename(it.src);
+        if(dateStr){ const badge = document.createElement('div'); badge.className='badge'; badge.textContent = dateStr; div.appendChild(badge); }
+        if(it.caption){ const cap = document.createElement('div'); cap.className='cap'; cap.textContent = it.caption; div.appendChild(cap); }
+        div.addEventListener('click', ()=>{ lbImg.src = it.src; lbMeta.textContent = [dateStr, it.caption].filter(Boolean).join(' · '); lb.classList.add('open'); });
+        galleryGrid.appendChild(div);
+      }
+    }
+
+    loadManifest().then(renderGallery);
+    lb.addEventListener('click', ()=> lb.classList.remove('open'));
+  </script>
+</body>
+</html>
