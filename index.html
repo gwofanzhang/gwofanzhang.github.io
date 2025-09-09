@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Gwofan Zhang 张国藩</title>
   <meta name="description" content="Gwofan Zhang (张国藩) — Medical Physics | Photochemistry | AI for Molecular Design." />
   <meta name="author" content="Gwofan Zhang" />
@@ -99,6 +99,38 @@
     .pub li { margin-bottom: 10px; }
 
     .footer { color: var(--muted); text-align: center; padding: 24px 0 40px; }
+    /* ===== mobile safe-area + anchor offset ===== */
+:root {
+  /* iOS 刘海安全区；非 iOS 返回 0 */
+  --safe-top: env(safe-area-inset-top, 0px);
+  /* 页面滚动到锚点时的预留位（PC 80，移动含安全区） */
+  --anchor-offset: 80px;
+}
+
+@media (max-width: 900px) {
+  /* 容器上方多留出安全区，避免被顶部遮挡 */
+  .wrap { padding-top: calc(var(--safe-top) + 12px); }
+  /* 左栏在大屏 sticky，移动端取消粘性 */
+  .sidebar { position: static; top: auto; }
+}
+
+/* PC 保持左栏 sticky，但考虑有安全区的机型（iPad/横屏） */
+@media (min-width: 901px) {
+  .sidebar { top: calc(var(--safe-top) + 24px); }
+}
+
+/* 点击导航锚点时，预留滚动顶距，避免标题被顶到卡片下方 */
+html { scroll-padding-top: var(--anchor-offset); }
+@media (max-width: 900px) {
+  html { scroll-padding-top: calc(var(--safe-top) + 72px); }
+}
+
+/* 也可给每个 section 单独加： */
+section { scroll-margin-top: var(--anchor-offset); }
+@media (max-width: 900px) {
+  section { scroll-margin-top: calc(var(--safe-top) + 72px); }
+}
+
   </style>
 </head>
 <body>
