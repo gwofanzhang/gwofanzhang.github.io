@@ -130,6 +130,16 @@ section { scroll-margin-top: var(--anchor-offset); }
 @media (max-width: 900px) {
   section { scroll-margin-top: calc(var(--safe-top) + 72px); }
 }
+    /* Publications hanging indent + tighter rhythm */
+.publist { padding-left: 0; margin: .25rem 0 0; }
+.publist > li {
+  list-style-position: inside;  /* 有序编号靠左 */
+  margin: .6rem 0;
+  padding-left: 1rem;           /* 悬挂缩进 */
+  text-indent: -1rem;
+}
+.publist a { word-break: break-all; } /* DOI 在移动端不溢出 */
+
 
   </style>
 </head>
@@ -189,23 +199,62 @@ section { scroll-margin-top: var(--anchor-offset); }
       </section>
 
       <section id="publications">
-        <h2>Selected Publications</h2>
-        <ol class="pub">
-          <li>Guofan Zhang†*, Tan Zhang, Fang‑Fang Yin*. <a href="https://doi.org/10.1016/j.device.2025.100847" target="_blank" rel="noopener"><em>A roadmap for the implementation of 3D‑printed organs in healthcare</em></a>. <strong>Device</strong>, 2025. (First & corresponding author)</li>
-          <li>Shaoyong Cai†, <strong>Guofan Zhang†</strong>, Lei Wang, et al. <a href="https://doi.org/10.1016/j.mtchem.2022.101148" target="_blank" rel="noopener">Ratiometric fluorescent sensor based on TPU‑PVP coaxial nanofibers for monitoring trace ammonia in breath</a>. <em>Materials Today Chemistry</em>, 2022. (Co‑first author)</li>
-          <li>Shaoyong Cai†, Guangjie Song†, <strong>Guofan Zhang</strong>, et al. <a href="https://doi.org/10.1016/j.snb.2022.132153" target="_blank" rel="noopener">A multicolor fluorescent sensor array based on curcumin and its analogs as a shrimp freshness indicator</a>. <em>Sensors & Actuators B: Chemical</em>, 2022.</li>
-          <li>He Zhang†, Fangyuan Sun, Ge Cao, <strong>Guofan Zhang</strong>, et al. <a href="https://doi.org/10.1088/2631-7990/aca638" target="_blank" rel="noopener">Bifunctional flexible electrochromic supercapacitors based on silver nanowires flexible transparent electrodes</a>. <em>Int. J. Extreme Manufacturing</em>, 2023.</li>
-          <li>Ge Cao†, Jiatong Xu†, Shaoyong Cai, <strong>Guofan Zhang</strong>, et al. <a href="https://doi.org/10.1021/acsapm.2c01674" target="_blank" rel="noopener">Highly conductive and dispersible PANI microtubes prepared in the presence of methyl orange</a>. <em>ACS Applied Polymer Materials</em>, 2022.</li>
-          <li>Min Shen†, Hongtian Liu†, Tingting Pan*, <strong>Guofan Zhang</strong>, et al. <a href="https://doi.org/10.1016/j.snb.2023.133317" target="_blank" rel="noopener">Crosslinked PVA electrospinning nanofibrous film as a new platform for the design of K+ sensor</a>. <em>Sensors & Actuators B: Chemical</em>, 2023.</li>
-        </ol>
-        <details>
-          <summary>Patents</summary>
-          <ul>
-            <li>Yanqing Tian, Shaoyong Cai, <strong>Guofan Zhang</strong>, Ziqiang Wang. Curcumin derivative‑based double‑emission ratiometric fluorescence sensor and preparation. CN114634523 A (2022).</li>
-            <li>Yanqing Tian, Shaoyong Cai, Guangjie Song, <strong>Guofan Zhang</strong>. Fluorescent ink and preparation method and application. CN114031977 A (2021).</li>
-          </ul>
-        </details>
-      </section>
+  <h2>Publications</h2>
+
+  <h3 style="margin:.25rem 0 .5rem; font-style:italic;">Journal Articles</h3>
+  <ol class="publist">
+    <li>
+      <strong>Guofan Zhang</strong><sup>†*</sup>, Tan Zhang, Fang-Fang Yin<sup>*</sup>.
+      A roadmap for the implementation of 3D-printed organs in healthcare.
+      <em>Device</em> <strong>2025</strong>, 100847.
+      <a href="https://doi.org/10.1016/j.device.2025.100847" target="_blank" rel="noopener">https://doi.org/10.1016/j.device.2025.100847</a>
+    </li>
+
+    <li>
+      Shaoyong Cai<sup>†</sup>, <strong>Guofan Zhang</strong><sup>†</sup>, Lei Wang, Tianlan Jian, Jiatong Xu, Fengyu Su, Yanqing Tian.
+      Ratiometric fluorescent sensor based on TPU-PVP coaxial nanofibers for monitoring trace ammonia in breath.
+      <em>Materials Today Chemistry</em> <strong>26</strong> (2022), 101148.
+      <a href="https://doi.org/10.1016/j.mtchem.2022.101148" target="_blank" rel="noopener">https://doi.org/10.1016/j.mtchem.2022.101148</a>
+    </li>
+
+    <li>
+      Shaoyong Cai, Guangjie Song, <strong>Guofan Zhang</strong>, Lei Wang, Tianlan Jian, Jiatong Xu, Fengyu Su, Yanqing Tian.
+      A multicolor fluorescent sensor array based on curcumin and its analogs as a shrimp freshness indicator.
+      <em>Sensors and Actuators B: Chemical</em> <strong>367</strong> (2022), 132153.
+      <a href="https://doi.org/10.1016/j.snb.2022.132153" target="_blank" rel="noopener">https://doi.org/10.1016/j.snb.2022.132153</a>
+    </li>
+
+    <li>
+      He Zhang, Fangyuan Sun, Ge Cao, Dongyan Zhou, <strong>Guofan Zhang</strong>, Fengyu Su, Yanqing Tian, Yanhong Tian.
+      Bifunctional flexible electrochromic supercapacitors based on silver nanowires flexible transparent electrodes.
+      <em>International Journal of Extreme Manufacturing</em> <strong>5</strong> (2023), 015503.
+      <a href="https://doi.org/10.1088/2631-7990/aca638" target="_blank" rel="noopener">https://doi.org/10.1088/2631-7990/aca638</a>
+    </li>
+
+    <li>
+      Ge Cao, Jiatong Xu, Shaoyong Cai, <strong>Guofan Zhang</strong>, Yonghao Chen, He Zhang, Yanqing Tian.
+      Highly conductive and dispersible PANI microtubes prepared in the presence of methyl orange.
+      <em>ACS Applied Polymer Materials</em> <strong>4</strong> (2022), 5674–5682.
+      <a href="https://doi.org/10.1021/acsapm.2c01674" target="_blank" rel="noopener">https://doi.org/10.1021/acsapm.2c01674</a>
+    </li>
+
+    <li>
+      Min Shen, Hongtian Liu, Tingting Pan, Juewei Ning, Dongyan Zhou, Guangjie Song, Yuguo Wang, Shaoyong Cai, Xi Xia,
+      <strong>Guofan Zhang</strong>, Fengyu Su, Yanqing Tian.
+      Crosslinked PVA electrospinning nanofibrous film as a new platform for the design of K<sup>+</sup> sensor.
+      <em>Sensors and Actuators B: Chemical</em> <strong>380</strong> (2023), 133317.
+      <a href="https://doi.org/10.1016/j.snb.2023.133317" target="_blank" rel="noopener">https://doi.org/10.1016/j.snb.2023.133317</a>
+    </li>
+  </ol>
+
+  <details style="margin-top:.5rem">
+    <summary style="cursor:pointer">Author notes</summary>
+    <p class="muted" style="margin:.25rem 0 0">
+      <sup>†</sup> Co-first author &nbsp;•&nbsp; <sup>*</sup> Corresponding author
+    </p>
+  </details>
+</section>
+
 
       <section id="experience" class="two-col">
         <div>
