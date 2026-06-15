@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Gwofan Zhang 张国藩</title>
-  <link rel="icon" type="image/png" href="/Zcoin.png">
-  <meta name="description" content="Gwofan Zhang (张国藩) — Medical Physics | Photochemistry | AI for Molecular Design." />
+  <link rel="icon" type="image/png" href="/Zcoin.png" />
+  <meta name="description" content="Gwofan Zhang (张国藩). Medical Physics, photochemistry, AI for molecular design, radiotherapy phantoms, and tetrapyrrole spectral prediction." />
   <meta name="author" content="Gwofan Zhang" />
   <link rel="canonical" href="https://gwofanzhang.github.io/" />
 
-  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Gwofan Zhang 张国藩" />
   <meta property="og:site_name" content="Gwofan Zhang" />
   <meta property="og:description" content="Medical Physics | Photochemistry | AI for Molecular Design" />
@@ -21,7 +20,6 @@
   <meta name="twitter:description" content="Medical Physics | Photochemistry | AI for Molecular Design" />
   <meta name="twitter:image" content="/assets/avatar.jpg" />
 
-  <!-- Schema.org Person -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -42,116 +40,272 @@
 
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #1f2937; /* slate-800 */
-      --muted: #6b7280; /* gray-500 */
-      --accent: #0ea5e9; /* sky-500 */
-      --card: #f8fafc; /* slate-50 */
-      --line: #e5e7eb; /* gray-200 */
+      --bg: #f7fbff;
+      --bg2: #eef7ff;
+      --text: #172033;
+      --muted: #64748b;
+      --accent: #0284c7;
+      --accent2: #0f766e;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-solid: #ffffff;
+      --line: #dbe7f3;
+      --soft: #e0f2fe;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --anchor-offset: 88px;
     }
+
     @media (prefers-color-scheme: dark) {
-      :root { --bg:#0b1220; --text:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --card:#0f172a; --line:#1f2937; }
+      :root {
+        --bg: #07111f;
+        --bg2: #0b1728;
+        --text: #e5edf6;
+        --muted: #a4b3c6;
+        --accent: #38bdf8;
+        --accent2: #5eead4;
+        --card: rgba(15, 23, 42, 0.9);
+        --card-solid: #0f172a;
+        --line: #243247;
+        --soft: #0c2940;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+      }
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    html { scroll-padding-top: var(--anchor-offset); }
+    html, body { min-height: 100%; }
+
     body {
-      margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg); color: var(--text);
+      margin: 0;
+      font: 16px/1.68 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(14, 165, 233, 0.20), transparent 32rem),
+        radial-gradient(circle at 88% 8%, rgba(20, 184, 166, 0.14), transparent 28rem),
+        linear-gradient(180deg, var(--bg), var(--bg2));
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    strong { font-weight: 720; }
+    sup { line-height: 0; }
 
-    /* ====== Layout (ngarabird-style: sticky left column + content) ====== */
-    .wrap { display: grid; grid-template-columns: 320px 1fr; gap: 32px; max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
-    @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .sidebar { position: static; top: auto; } }
+    .wrap {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 34px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 22px 48px;
+    }
 
-    .sidebar { position: sticky; top: 24px; align-self: start; }
-    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+    .sidebar { position: sticky; top: calc(var(--safe-top) + 24px); align-self: start; }
+    .card, section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
 
-    .avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line); }
-    .name { font-size: 1.6rem; font-weight: 700; margin: 12px 0 4px; }
-    .tagline { color: var(--muted); margin: 0 0 12px; }
+    .profile-card { padding: 24px; text-align: center; overflow: hidden; position: relative; }
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 96px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(20, 184, 166, 0.18));
+      pointer-events: none;
+    }
 
-    .meta { list-style: none; margin: 12px 0 0; padding: 0; }
-    .meta li { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
-    .meta .label { width: 64px; color: var(--muted); font-size: 0.9rem; }
+    .avatar {
+      position: relative;
+      width: 126px;
+      height: 126px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--card-solid);
+      box-shadow: 0 12px 30px rgba(2, 132, 199, 0.18);
+    }
 
-    .social { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
-    .pill { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.9rem; background: transparent; }
+    .name { position: relative; font-size: 1.62rem; line-height: 1.2; font-weight: 780; margin: 14px 0 4px; }
+    .tagline { color: var(--muted); margin: 0 0 14px; font-size: 0.98rem; }
 
-    nav { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
-    nav a { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); background: transparent; }
+    .quick-tags, .social, nav { display: flex; gap: 9px; flex-wrap: wrap; justify-content: center; }
+    .quick-tags { margin: 16px 0 4px; }
+    .tag, .pill, nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--text);
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
 
-    /* ====== Content ====== */
-    .content { display: grid; gap: 28px; }
-    section { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-    section h2 { margin: 0 0 10px; font-size: 1.25rem; }
+    .tag.featured { border-color: rgba(2, 132, 199, 0.30); background: var(--soft); color: var(--accent); }
+    nav { margin-top: 18px; }
+    nav a:hover, .pill:hover { border-color: rgba(2, 132, 199, 0.45); text-decoration: none; transform: translateY(-1px); }
+
+    .info-card { margin-top: 16px; padding: 20px; }
+    .meta { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .meta li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+    .meta .label { color: var(--muted); font-size: 0.86rem; }
+    .social { margin-top: 16px; justify-content: flex-start; }
+
+    .content { display: grid; gap: 24px; min-width: 0; }
+    section { padding: 25px; scroll-margin-top: var(--anchor-offset); }
+    section h2 { margin: 0 0 14px; font-size: 1.25rem; letter-spacing: -0.01em; }
+    section h3 { margin: 1.1rem 0 0.5rem; font-size: 1rem; color: var(--text); }
+    p { margin: 0 0 0.8rem; }
     .muted { color: var(--muted); }
-    .tight li { margin-bottom: 6px; }
+    .lead { font-size: 1.04rem; }
+
+    .hero {
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(240, 249, 255, 0.88)),
+        var(--card-solid);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .hero { background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(8, 47, 73, 0.60)), var(--card-solid); }
+      .tag, .pill, nav a { background: rgba(15, 23, 42, 0.56); }
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-title { font-size: clamp(1.55rem, 2.3vw, 2.25rem); line-height: 1.18; margin: 0 0 12px; letter-spacing: -0.03em; }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: var(--accent);
+      color: white;
+      font-weight: 650;
+      font-size: 0.92rem;
+    }
+    .button:hover { text-decoration: none; filter: brightness(0.96); }
+    .button.secondary { background: transparent; color: var(--accent); border-color: rgba(2, 132, 199, 0.35); }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .highlight {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.46);
+    }
+    .highlight .num { color: var(--accent); font-size: 1.22rem; font-weight: 780; }
+    .highlight .txt { display: block; color: var(--muted); font-size: 0.88rem; line-height: 1.4; }
+
+    .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .timeline li {
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.42);
+    }
+    .year { font-weight: 780; color: var(--accent); }
+
+    .publist { counter-reset: pubs; list-style: none; padding: 0; margin: 0.25rem 0 0; display: grid; gap: 12px; }
+    .publist > li {
+      counter-increment: pubs;
+      position: relative;
+      padding: 14px 14px 14px 52px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.42);
+    }
+    .publist > li::before {
+      content: counter(pubs);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 780;
+      font-size: 0.86rem;
+    }
+    .publist a { word-break: break-word; }
+    .pub-meta { display: block; color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
 
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+    .plain-list, .compact-list { margin: 0; padding-left: 1.1rem; }
+    .plain-list li, .compact-list li { margin: 0.45rem 0; }
 
-    details { border-top: 1px dashed var(--line); padding-top: 10px; }
-    details summary { cursor: pointer; }
+    .skills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .skill { padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 0.86rem; background: rgba(255, 255, 255, 0.35); }
 
-    .pub li { margin-bottom: 10px; }
+    .entry { padding: 14px 0; border-top: 1px dashed var(--line); }
+    .entry:first-of-type { border-top: 0; padding-top: 0; }
+    .entry-title { font-weight: 740; }
+    .entry-date { color: var(--muted); font-size: 0.92rem; }
 
-    .footer { color: var(--muted); text-align: center; padding: 24px 0 40px; }
-    /* ===== mobile safe-area + anchor offset ===== */
-:root {
-  /* iOS 刘海安全区；非 iOS 返回 0 */
-  --safe-top: env(safe-area-inset-top, 0px);
-  /* 页面滚动到锚点时的预留位（PC 80，移动含安全区） */
-  --anchor-offset: 80px;
-}
+    details { border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 10px; }
+    details summary { cursor: pointer; font-weight: 650; }
 
-@media (max-width: 900px) {
-  /* 容器上方多留出安全区，避免被顶部遮挡 */
-  .wrap { padding-top: calc(var(--safe-top) + 12px); }
-  /* 左栏在大屏 sticky，移动端取消粘性 */
-  .sidebar { position: static; top: auto; }
-}
+    .footer { color: var(--muted); text-align: center; padding: 24px 0 6px; }
 
-/* PC 保持左栏 sticky，但考虑有安全区的机型（iPad/横屏） */
-@media (min-width: 901px) {
-  .sidebar { top: calc(var(--safe-top) + 24px); }
-}
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; padding-top: calc(var(--safe-top) + 16px); }
+      .sidebar { position: static; top: auto; }
+      .profile-card { text-align: center; }
+      html { scroll-padding-top: calc(var(--safe-top) + 72px); }
+      section { scroll-margin-top: calc(var(--safe-top) + 72px); }
+    }
 
-/* 点击导航锚点时，预留滚动顶距，避免标题被顶到卡片下方 */
-html { scroll-padding-top: var(--anchor-offset); }
-@media (max-width: 900px) {
-  html { scroll-padding-top: calc(var(--safe-top) + 72px); }
-}
-
-/* 也可给每个 section 单独加： */
-section { scroll-margin-top: var(--anchor-offset); }
-@media (max-width: 900px) {
-  section { scroll-margin-top: calc(var(--safe-top) + 72px); }
-}
-    /* Publications hanging indent + tighter rhythm */
-.publist { padding-left: 0; margin: .25rem 0 0; }
-.publist > li {
-  list-style-position: inside;  /* 有序编号靠左 */
-  margin: .6rem 0;
-  padding-left: 1rem;           /* 悬挂缩进 */
-  text-indent: -1rem;
-}
-.publist a { word-break: break-all; } /* DOI 在移动端不溢出 */
-
-
+    @media (max-width: 700px) {
+      .two-col, .highlight-grid { grid-template-columns: 1fr; }
+      .timeline li { grid-template-columns: 1fr; gap: 4px; }
+      section, .hero { padding: 20px; }
+      .wrap { padding-left: 14px; padding-right: 14px; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- ================= Left / Sticky ================= -->
     <aside class="sidebar">
-      <div class="card" style="text-align:center">
+      <div class="card profile-card">
         <img src="/your-photo.jpg" alt="Portrait of Gwofan Zhang" class="avatar" />
         <h1 class="name">Gwofan Zhang <span style="font-weight:500">张国藩</span></h1>
         <p class="tagline">Medical Physics @ Duke | Photochemistry & AI for Molecular Design</p>
+        <div class="quick-tags" aria-label="Research highlights">
+          <span class="tag featured">Scientific Reports 2026</span>
+          <span class="tag featured">AAPM Blue Ribbon Poster</span>
+          <span class="tag">Radiotherapy Phantoms</span>
+          <span class="tag">Tetrapyrrole ML</span>
+        </div>
         <nav aria-label="Section navigation">
           <a href="#about">About</a>
           <a href="#news">News</a>
@@ -159,16 +313,18 @@ section { scroll-margin-top: var(--anchor-offset); }
           <a href="#experience">Experience</a>
           <a href="#education">Education</a>
           <a href="#awards">Awards</a>
+          <a href="#conferences">Conferences</a>
           <a href="#contact">Contact</a>
         </nav>
-        <div style="margin-top:10px;text-align:left">
-          <a class="pill" href="/coffee.html">☕ Coffee</a>
+        <div style="margin-top:14px">
+          <a class="pill" href="/coffee.html">Coffee</a>
         </div>
       </div>
 
-      <div class="card" style="margin-top:16px">
+      <div class="card info-card">
         <ul class="meta">
           <li><span class="label">Email</span> <a href="mailto:guofan.zhang@duke.edu">guofan.zhang@duke.edu</a></li>
+          <li><span class="label">Website</span> <a href="https://gfzh.org" target="_blank" rel="noopener">gfzh.org</a></li>
           <li><span class="label">ORCID</span> <a href="https://orcid.org/0000-0002-1995-5355" target="_blank" rel="noopener">0000-0002-1995-5355</a></li>
           <li><span class="label">Scholar</span> <a href="https://scholar.google.com/citations?user=ENH-gs8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
           <li><span class="label">RGate</span> <a href="https://www.researchgate.net/profile/Guofan-Zhang-3" target="_blank" rel="noopener">Profile</a></li>
@@ -176,351 +332,175 @@ section { scroll-margin-top: var(--anchor-offset); }
         </ul>
         <div class="social">
           <a class="pill" href="https://scholars.duke.edu/person/Guofan.Zhang" target="_blank" rel="noopener">Duke Profile</a>
-          <a class="pill" href="/CV_Guofan%20Zhang.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+          <a class="pill" href="/CV_Guofan%20Zhang.pdf" target="_blank" rel="noopener">CV PDF</a>
           <a class="pill" href="/sitemap.xml">Sitemap</a>
         </div>
       </div>
     </aside>
 
-    <!-- ================= Right / Content ================= -->
     <main class="content">
-      <section id="about">
-        <h2>About Me</h2>
-        <p>I am a Master candidate in the Medical Physics at the <a href="https://medicalphysics.duke.edu/" target="_blank">Duke University</a>. I am very fortunate to be advised by <a href="https://medicalphysics.duke.edu/members/fang-fang-yin-phd/" target="_blank">Prof. Fang-Fang Yin</a>. I received my joint Bachelors in Department of Materials Science and Engineering at the Southern University of Science and Technology and Yunnan University.</p>
-        <p>My primary research interests lie in 3D printing phantom used in radiotherapy and using LLM to predict compound properties. Currently, I am working on Jiangsu Provincial Key Laboratory for Smart Diagnosis and Treatment of Lung Cancer. Previously, I have worked on <a href="https://faculty.sustech.edu.cn/?tagid=tianyq&iscss=1&snapid=1&orderby=date&go=2&lang=en" target="_blank">Organic Polymer Functional Materials Laboratory</a> at SUSTech and <a href="http://www.emd.riet.ynu.edu.cn/" target="_blank">Electronic Materials and Devices Group</a> at YNU.</p>
+      <section id="about" class="hero">
+        <span class="hero-kicker">Medical Physics · Photochemistry · Molecular AI</span>
+        <h2 class="hero-title">Research at the interface of radiotherapy engineering, tetrapyrrole photophysics, and AI-assisted molecular design.</h2>
+        <p class="lead">I completed my M.S. in Medical Physics at <a href="https://medicalphysics.duke.edu/" target="_blank" rel="noopener">Duke University</a>, advised by <a href="https://medicalphysics.duke.edu/members/fang-fang-yin-phd/" target="_blank" rel="noopener">Prof. Fang-Fang Yin</a>. My work combines 3D-printed radiotherapy phantoms, photochemistry, and machine learning models for molecular property prediction.</p>
+        <p>Previously, I worked in the Organic Polymer Functional Materials Laboratory at SUSTech and the Electronic Materials and Devices Group at Yunnan University. My current research focuses on clinically relevant phantom systems and AI-driven prediction or design of tetrapyrrole photosensitizers.</p>
+        <div class="hero-actions">
+          <a class="button" href="#publications">View publications</a>
+          <a class="button secondary" href="#conferences">View conferences</a>
+        </div>
+        <div class="highlight-grid">
+          <div class="highlight"><span class="num">7+</span><span class="txt">Journal articles and accepted papers</span></div>
+          <div class="highlight"><span class="num">2</span><span class="txt">Issued Chinese patents</span></div>
+          <div class="highlight"><span class="num">2026</span><span class="txt">AAPM Blue Ribbon Poster, Therapy track</span></div>
+        </div>
       </section>
 
       <section id="news">
         <h2>News & Updates</h2>
-        <ul class="tight">
-         <li><strong>2026</strong> — <a href="https://www.linkedin.com/in/gwofan-zhang-47688937a/overlay/Education/1114384886/treasury/?profileId=ACoAAF2_B1oBLnVlmAytKVt3kKtC0nAGLs7Fjz8" target="_blank" rel="noopener">Happy Graduation! @DUKE</a></li>
-<li><strong>2026</strong> — Two preprints posted on <em>ChemRxiv</em> on porphyrin spectral prediction platform.</li>
-<li><strong>2026</strong> — Accepted abstract at <strong>35th Chinese Chemical Society Annual Meeting & ACS 150</strong>, Chongqing.</li>
-          <li><strong>2025</strong> — <em>Device</em> perspective accepted: <a href="https://www.sciencedirect.com/science/article/pii/S2666998625001607?via%3Dihub" target="_blank" rel="noopener">A Roadmap for 3D‑Printed Organs</a>.</li>
-          <li><strong>2025</strong> — Joined <strong>Data+X</strong> (DIRC, Duke & DKU) and <strong>DII Cohort II</strong>.</li>
-          <li><strong>2024</strong> — Started M.S. in Medical Physics @ Duke.</li>
+        <ul class="timeline">
+          <li><span class="year">2026</span><span>Selected for <strong>Blue Ribbon Poster, Therapy track</strong> at the <strong>AAPM Annual Meeting</strong>, Vancouver.</span></li>
+          <li><span class="year">2026</span><span>Oral abstract accepted for the <strong>AAPM Annual Meeting</strong>, Vancouver.</span></li>
+          <li><span class="year">2026</span><span>Article published in <em>Scientific Reports</em>: <a href="https://doi.org/10.1038/s41598-026-55436-6" target="_blank" rel="noopener">A versatile method for accurately predicting electronic absorption spectra of tetrapyrrole macrocycles</a>.</span></li>
+          <li><span class="year">2026</span><span><a href="https://www.linkedin.com/in/gwofan-zhang-47688937a/overlay/Education/1114384886/treasury/?profileId=ACoAAF2_B1oBLnVlmAytKVt3kKtC0nAGLs7Fjz8" target="_blank" rel="noopener">Happy Graduation @ Duke</a>.</span></li>
+          <li><span class="year">2026</span><span>Preprint posted on <em>ChemRxiv</em> on porphyrin molecular design and UV-Vis-NIR spectral prediction platform.</span></li>
+          <li><span class="year">2026</span><span>Abstract accepted at <strong>ACS 150 and 35th Chinese Chemical Society Annual Meeting</strong>, Chongqing.</span></li>
+          <li><span class="year">2025</span><span><em>Device</em> perspective accepted: <a href="https://doi.org/10.1016/j.device.2025.100847" target="_blank" rel="noopener">A roadmap for the implementation of 3D-printed organs in healthcare</a>.</span></li>
+          <li><span class="year">2025</span><span>Joined <strong>Data+X</strong> (DIRC, Duke & DKU) and <strong>DII Cohort II</strong>.</span></li>
+          <li><span class="year">2024</span><span>Started M.S. in Medical Physics at Duke.</span></li>
         </ul>
       </section>
 
-<section id="publications">
-  <h2>Publications</h2>
+      <section id="publications">
+        <h2>Publications</h2>
+        <h3>Journal Articles</h3>
+        <ol class="publist">
+          <li><strong>Guofan Zhang</strong>, Xuanzhi Wang, Qirui Sun, Hanchi Zhao, Jiaao Han, Haoyuan Yang, Hanyu Wang, Chengshu Tian, Aizhen Kuang, Chulong Zhang, Tianhao Li, Zijing Wang, Pengzhan Guo, Rui Liu. A versatile method for accurately predicting electronic absorption spectra of tetrapyrrole macrocycles. <em>Scientific Reports</em> <strong>2026</strong>. <a href="https://doi.org/10.1038/s41598-026-55436-6" target="_blank" rel="noopener">https://doi.org/10.1038/s41598-026-55436-6</a><span class="pub-meta">Accepted 25 May 2026. Published 11 June 2026.</span></li>
+          <li><strong>Guofan Zhang</strong><sup>†*</sup>, Tan Zhang, Fang-Fang Yin<sup>*</sup>. A roadmap for the implementation of 3D-printed organs in healthcare. <em>Device</em> <strong>2025</strong>, 100847. <a href="https://doi.org/10.1016/j.device.2025.100847" target="_blank" rel="noopener">https://doi.org/10.1016/j.device.2025.100847</a><span class="pub-meta">First and corresponding author.</span></li>
+          <li>Shaoyong Cai<sup>†</sup>, <strong>Guofan Zhang</strong><sup>†</sup>, Lei Wang, Tianlan Jian, Jiatong Xu, Fengyu Su, Yanqing Tian. Ratiometric fluorescent sensor based on TPU-PVP coaxial nanofibers for monitoring trace ammonia in breath. <em>Materials Today Chemistry</em> <strong>26</strong> (2022), 101148. <a href="https://doi.org/10.1016/j.mtchem.2022.101148" target="_blank" rel="noopener">https://doi.org/10.1016/j.mtchem.2022.101148</a><span class="pub-meta">Co-first author.</span></li>
+          <li>Shaoyong Cai, Guangjie Song, <strong>Guofan Zhang</strong>, Lei Wang, Tianlan Jian, Jiatong Xu, Fengyu Su, Yanqing Tian. A multicolor fluorescent sensor array based on curcumin and its analogs as a shrimp freshness indicator. <em>Sensors and Actuators B: Chemical</em> <strong>367</strong> (2022), 132153. <a href="https://doi.org/10.1016/j.snb.2022.132153" target="_blank" rel="noopener">https://doi.org/10.1016/j.snb.2022.132153</a></li>
+          <li>He Zhang, Fangyuan Sun, Ge Cao, Dongyan Zhou, <strong>Guofan Zhang</strong>, Fengyu Su, Yanqing Tian, Yanhong Tian. Bifunctional flexible electrochromic supercapacitors based on silver nanowires flexible transparent electrodes. <em>International Journal of Extreme Manufacturing</em> <strong>5</strong> (2023), 015503. <a href="https://doi.org/10.1088/2631-7990/aca638" target="_blank" rel="noopener">https://doi.org/10.1088/2631-7990/aca638</a></li>
+          <li>Ge Cao, Jiatong Xu, Shaoyong Cai, <strong>Guofan Zhang</strong>, Yonghao Chen, He Zhang, Yanqing Tian. Highly conductive and dispersible PANI microtubes prepared in the presence of methyl orange. <em>ACS Applied Polymer Materials</em> <strong>4</strong> (2022), 5674-5682. <a href="https://doi.org/10.1021/acsapm.2c01674" target="_blank" rel="noopener">https://doi.org/10.1021/acsapm.2c01674</a></li>
+          <li>Min Shen, Hongtian Liu, Tingting Pan, Juewei Ning, Dongyan Zhou, Guangjie Song, Yuguo Wang, Shaoyong Cai, Xi Xia, <strong>Guofan Zhang</strong>, Fengyu Su, Yanqing Tian. Crosslinked PVA electrospinning nanofibrous film as a new platform for the design of K<sup>+</sup> sensor. <em>Sensors and Actuators B: Chemical</em> <strong>380</strong> (2023), 133317. <a href="https://doi.org/10.1016/j.snb.2023.133317" target="_blank" rel="noopener">https://doi.org/10.1016/j.snb.2023.133317</a></li>
+        </ol>
 
-  <h3 style="margin:.25rem 0 .5rem; font-style:italic;">Journal Articles</h3>
-  <ol class="publist">
-    <li><strong>Guofan Zhang</strong><sup>†*</sup>, Tan Zhang, Fang-Fang Yin<sup>*</sup>. A roadmap for the implementation of 3D-printed organs in healthcare. <em>Device</em> <strong>2025</strong>, 100847. <a href="https://doi.org/10.1016/j.device.2025.100847" target="_blank">https://doi.org/10.1016/j.device.2025.100847</a></li>
-    <li>Shaoyong Cai<sup>†</sup>, <strong>Guofan Zhang</strong><sup>†</sup>, Lei Wang, Tianlan Jian, Jiatong Xu, Fengyu Su, Yanqing Tian. Ratiometric fluorescent sensor based on TPU-PVP coaxial nanofibers for monitoring trace ammonia in breath. <em>Materials Today Chemistry</em> <strong>26</strong> (2022), 101148. <a href="https://doi.org/10.1016/j.mtchem.2022.101148" target="_blank">https://doi.org/10.1016/j.mtchem.2022.101148</a></li>
-    <li>Shaoyong Cai, Guangjie Song, <strong>Guofan Zhang</strong>, Lei Wang, Tianlan Jian, Jiatong Xu, Fengyu Su, Yanqing Tian. A multicolor fluorescent sensor array based on curcumin and its analogs as a shrimp freshness indicator. <em>Sensors and Actuators B: Chemical</em> <strong>367</strong> (2022), 132153. <a href="https://doi.org/10.1016/j.snb.2022.132153" target="_blank">https://doi.org/10.1016/j.snb.2022.132153</a></li>
-    <li>He Zhang, Fangyuan Sun, Ge Cao, Dongyan Zhou, <strong>Guofan Zhang</strong>, Fengyu Su, Yanqing Tian, Yanhong Tian. Bifunctional flexible electrochromic supercapacitors based on silver nanowires flexible transparent electrodes. <em>Int. J. Extreme Manufacturing</em> <strong>5</strong> (2023), 015503. <a href="https://doi.org/10.1088/2631-7990/aca638" target="_blank">https://doi.org/10.1088/2631-7990/aca638</a></li>
-    <li>Ge Cao, Jiatong Xu, Shaoyong Cai, <strong>Guofan Zhang</strong>, Yonghao Chen, He Zhang, Yanqing Tian. Highly conductive and dispersible PANI microtubes prepared in the presence of methyl orange. <em>ACS Applied Polymer Materials</em> <strong>4</strong> (2022), 5674–5682. <a href="https://doi.org/10.1021/acsapm.2c01674" target="_blank">https://doi.org/10.1021/acsapm.2c01674</a></li>
-    <li>Min Shen, Hongtian Liu, Tingting Pan, Juewei Ning, Dongyan Zhou, Guangjie Song, Yuguo Wang, Shaoyong Cai, Xi Xia, <strong>Guofan Zhang</strong>, Fengyu Su, Yanqing Tian. Crosslinked PVA electrospinning nanofibrous film as a new platform for the design of K<sup>+</sup> sensor. <em>Sensors and Actuators B: Chemical</em> <strong>380</strong> (2023), 133317. <a href="https://doi.org/10.1016/j.snb.2023.133317" target="_blank">https://doi.org/10.1016/j.snb.2023.133317</a></li>
-  </ol>
-<h3 style="margin-top:1rem; font-style:italic;">Preprints</h3>
-<ol class="publist">
-  <li>
-    <strong>Guofan Zhang</strong> et al. 
-    A Versatile Method for Accurately Predicting Electronic Absorption Spectra of Tetrapyrrole Macrocycles 
-    <em>ChemRxiv</em> (2025). 
-    <a href="https://chemrxiv.org/doi/full/10.26434/chemrxiv-2025-9gsp2" target="_blank">
-      https://chemrxiv.org/doi/full/10.26434/chemrxiv-2025-9gsp2
-    </a>
-  </li>
+        <h3>Preprints</h3>
+        <ol class="publist">
+          <li><strong>Guofan Zhang</strong> et al. A Modular Web Platform for Porphyrin Molecular Design and UV-Vis-NIR Spectral Prediction in the Photosciences. <em>ChemRxiv</em> (2026). <a href="https://chemrxiv.org/doi/full/10.26434/chemrxiv.15001143/v1" target="_blank" rel="noopener">https://chemrxiv.org/doi/full/10.26434/chemrxiv.15001143/v1</a></li>
+        </ol>
 
-  <li>
-    <strong>Guofan Zhang</strong> et al. 
-    A Modular Web Platform for Porphyrin Molecular Design and UV-Vis-NIR Spectral Prediction in the Photosciences
-    <em>ChemRxiv</em> (2026). 
-    <a href="https://chemrxiv.org/doi/full/10.26434/chemrxiv.15001143/v1" target="_blank">
-      https://chemrxiv.org/doi/full/10.26434/chemrxiv.15001143/v1
-    </a>
-  </li>
-</ol>
-  <h3 style="margin-top:1rem; font-style:italic;">Patents</h3>
-  <ul class="publist">
-    <li>Yanqing Tian, Shaoyong Cai, <strong>Guofan Zhang</strong>, Ziqiang Wang. Curcumin derivative-based double-emission ratiometric fluorescence sensor and preparation. CN114634523 A (2022).</li>
-    <li>Yanqing Tian, Shaoyong Cai, Guangjie Song, <strong>Guofan Zhang</strong>. Fluorescent ink and preparation method and application. CN114031977 A (2021).</li>
-  </ul>
+        <h3>Patents</h3>
+        <ol class="publist">
+          <li>Yanqing Tian, Shaoyong Cai, <strong>Guofan Zhang</strong>, Ziqiang Wang. Curcumin derivative-based double-emission ratiometric fluorescence sensor and preparation. CN114634523 A (2022).</li>
+          <li>Yanqing Tian, Shaoyong Cai, Guangjie Song, <strong>Guofan Zhang</strong>. Fluorescent ink and preparation method and application. CN114031977 A (2021).</li>
+        </ol>
 
-  <details style="margin-top:.5rem">
-    <summary style="cursor:pointer">Author notes</summary>
-    <p class="muted" style="margin:.25rem 0 0">
-      <sup>†</sup> Co-first author &nbsp;•&nbsp; <sup>*</sup> Corresponding author
-    </p>
-  </details>
-</section>
+        <details>
+          <summary>Author notes</summary>
+          <p class="muted" style="margin:.35rem 0 0"><sup>†</sup> Co-first author. <sup>*</sup> Corresponding author.</p>
+        </details>
+      </section>
 
       <section id="experience" class="two-col">
         <div>
           <h2>Research Experience</h2>
-          <ul>
-            <li><strong>3D‑Printed Lung Phantoms (DKU/Duke)</strong> — simulate respiratory motion for radiotherapy dose verification; polymer selection for SLA printers; evaluate dose accuracy. <span class="muted">(Aug 2024–present)</span></li>
-            <li><strong>AI‑predicted UV‑Vis spectra (DKU)</strong> — Chemprop‑based models from SMILES; conformer pipelines (RDKit/DFT); DTW/RMSE metrics; Bayesian HPO; exploring KANs & molecular embeddings. <span class="muted">(Jan 2025–present)</span></li>
-            <li><strong>Curcumin derivatives for breath NH₃ sensing (SUSTech)</strong> — BFC derivatives; coaxial electrospinning TPU/PVP core‑shell; ratiometric probes; clinical feasibility. <span class="muted">(2021–2022)</span></li>
-            <li><strong>Multicolor sensor array for shrimp freshness (SUSTech)</strong> — label fabrication; photophysics; on‑food monitoring. <span class="muted">(2020–2021)</span></li>
-          </ul>
+          <div class="entry">
+            <div class="entry-title">3D-Printed Lung Phantoms, DKU/Duke</div>
+            <div class="entry-date">Main Researcher. Aug 2024 to May 2026</div>
+            <p class="muted">Prepared lung phantoms that simulate respiratory motion for radiotherapy dose verification. Work included 3D printing method evaluation, light-curing polymer preparation, and dose-verification use cases.</p>
+          </div>
+          <div class="entry">
+            <div class="entry-title">AI-predicted UV-Vis Spectra, DKU</div>
+            <div class="entry-date">Main Researcher. Jan 2025 to Present</div>
+            <p class="muted">Developed ML workflows for molecular absorption spectra from SMILES, including RDKit and DFT conformer pipelines, DTW/RMSE evaluation, Bayesian HPO, KAN exploration, and molecular embeddings.</p>
+          </div>
+          <div class="entry">
+            <div class="entry-title">Curcumin Derivatives for Breath NH3 Sensing, SUSTech</div>
+            <div class="entry-date">Main Researcher. May 2021 to Jul 2022</div>
+            <p class="muted">Designed BFC derivatives and ratiometric fluorescence probes, including TPU/PVP coaxial nanofiber construction and clinical feasibility exploration for Helicobacter pylori breath monitoring.</p>
+          </div>
+          <div class="entry">
+            <div class="entry-title">Multicolor Fluorescent Sensor Array, SUSTech</div>
+            <div class="entry-date">Assistant Researcher. May 2020 to Apr 2021</div>
+            <p class="muted">Fabricated visual sensing labels and evaluated photophysical and sensing properties for real-time shrimp freshness monitoring.</p>
+          </div>
         </div>
         <div>
           <h2>Skills</h2>
-          <ul>
-            <li><strong>Experimental:</strong> UV‑Vis/fluorometry, SEM/EDS, XRD, FTIR, NMR.</li>
-            <li><strong>Computation:</strong> Linux, MATLAB, Python, ChemDraw, SOLIDWORKS, Origin.</li>
-          </ul>
+          <h3>Experimental</h3>
+          <div class="skills">
+            <span class="skill">UV-Vis</span><span class="skill">Fluorometry</span><span class="skill">SEM</span><span class="skill">EDS</span><span class="skill">XRD</span><span class="skill">FTIR</span><span class="skill">NMR</span>
+          </div>
+          <h3>Computation</h3>
+          <div class="skills">
+            <span class="skill">Python</span><span class="skill">Linux</span><span class="skill">MATLAB</span><span class="skill">ChemDraw</span><span class="skill">SOLIDWORKS</span><span class="skill">Origin</span><span class="skill">MestReNova</span><span class="skill">MDI Jade</span>
+          </div>
+          <h3>Research Areas</h3>
+          <div class="skills">
+            <span class="skill">Medical Physics</span><span class="skill">Radiotherapy QA</span><span class="skill">3D Printing</span><span class="skill">Photochemistry</span><span class="skill">Tetrapyrroles</span><span class="skill">Molecular ML</span>
+          </div>
         </div>
       </section>
 
       <section id="education" class="two-col">
         <div>
           <h2>Education</h2>
-          <ul>
-            <li><strong>Duke University</strong> — M.S. Medical Physics. <span class="muted">Aug 2024–present.</span></li>
-            <li><strong>Yunnan University</strong> — B.Eng., Materials Science & Engineering (Joint Undergraduate). <span class="muted">Sep 2023–Jul 2024; rank 4/School.</span></li>
-            <li><strong>Southern University of Science and Technology</strong> — Study in Materials . <span class="muted">Sep 2020–Jul 2022.</span></li>
-            <li><strong>Yunnan University</strong> — Early coursework. <span class="muted">Sep 2019–Jun 2020.</span></li>
+          <ul class="plain-list">
+            <li><strong>Duke University</strong>. M.S., Medical Physics. <span class="muted">Aug 2024 to May 2026.</span></li>
+            <li><strong>Yunnan University</strong>. B.Eng., Materials Science and Engineering, Joint Undergraduate. <span class="muted">Sep 2023 to Jul 2024.</span></li>
+            <li><strong>Southern University of Science and Technology</strong>. Study in Materials. <span class="muted">Sep 2020 to Jul 2022.</span></li>
+            <li><strong>Yunnan University</strong>. Early coursework. <span class="muted">Sep 2019 to Jun 2020.</span></li>
           </ul>
         </div>
-        <div>
-          <h2 id="awards">Honors, Awards & Funding</h2>
-          <ul>
-            <li>China National Scholarship (≈0.2%), 2022.</li>
-            <li>Provincial Outstanding Graduate (≈0.5%), 2023.</li>
-            <li>University First‑/Second‑class Scholarships & Outstanding Student (YNU), 2020–2022.</li>
-            <li>First/Second/Third Prize — Micro‑photography & Metallography contests (SUSTech/YNU), 2021–2022.</li>
-            <li><strong>Data+X</strong> (DIRC) & <strong>DII Cohort II</strong>, 2025.</li>
+        <div id="awards">
+          <h2>Honors, Awards & Funding</h2>
+          <ul class="plain-list">
+            <li><strong>Blue Ribbon Poster, Therapy track</strong>, AAPM Annual Meeting, Vancouver, 2026.</li>
+            <li>Invited Report, Chinese Materials Conference, 2025.</li>
+            <li><strong>Data+X</strong> (DIRC) and <strong>DII Cohort II</strong>, 2025.</li>
+            <li>Provincial Outstanding Graduate, approximately 0.5%, 2023.</li>
+            <li>China National Scholarship, approximately 0.2%, 2022.</li>
+            <li>University First-class and Second-class Scholarships, YNU, 2020 to 2022.</li>
+            <li>Micro-photography and Metallography contest awards, SUSTech/YNU, 2021 to 2022.</li>
           </ul>
+        </div>
+      </section>
+
+      <section id="conferences">
+        <h2>Conferences & Activities</h2>
+        <div class="two-col">
+          <div>
+            <h3>Conferences</h3>
+            <ul class="plain-list">
+              <li><strong>Oral Abstract</strong>. AAPM Annual Meeting, Vancouver, 2026.</li>
+              <li><strong>Blue Ribbon Poster, Therapy track</strong>. AAPM Annual Meeting, Vancouver, 2026.</li>
+              <li><strong>Oral/Poster</strong>. ACS 150 and 35th Chinese Chemical Society Annual Meeting, Chongqing, 2026.<br /><em>An Integrated Computational Platform for Predicting Electronic Absorption Spectra of Porphyrin and Related Tetrapyrrole Systems</em>.</li>
+              <li><strong>Oral Abstract</strong>. 22nd International Symposium on Organometallic Chemistry, Kyoto, 2025.</li>
+              <li><strong>Poster</strong>. 9th International Symposium on Space Radiation Research and Particle Radiotherapy, Suzhou, 2024.</li>
+              <li><strong>Poster</strong>. 23rd National High-tech Ceramics Academic Annual Conference, Hangzhou, 2024.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Teaching & Service</h3>
+            <ul class="plain-list">
+              <li>Teaching Assistant for CHEM 110 and CHEM 150, Dec 2024 to May 2026.</li>
+              <li>Volunteer, SUSTech Volunteer Union, 33.5 accumulated hours, Sep 2020 to Sep 2022.</li>
+              <li>Volunteer leader, 11th Guangdong University Student Material Innovation Competition, Nov 2021 to Jan 2022.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section id="contact">
-        <h2>Conferences & Activities</h2>
-        <ul>
-          <li>
-  Oral/Poster — <strong>ACS 150 and 35th Chinese Chemical Society Annual Meeting (CCS)</strong>, Chongqing, 2026. <br>
-  <em>An Integrated Computational Platform for Predicting Electronic Absorption Spectra of Porphyrin and Related Tetrapyrrole Systems</em>
-</li>
-          <li>Poster — 9th Int. Symposium on Space Radiation Research & Particle Radiotherapy, Suzhou 2024.</li>
-          <li>Poster — 23rd National High‑tech Ceramics Academic Annual Conference, Hangzhou 2024.</li>
-          <li>Oral Abstract — 22nd International Symposium on Organometallic Chemistry, Kyoto 2025.</li>
-          <li>Invited Report — Chinese Materials Conference, Jul 2025.</li>
-          <li>Teaching Assistant for Chem 110 and Chem 150, Jan 2025- Aug 2025</li>
-          <li>Volunteer & leadership — SUSTech Volunteer Union (33.5h), GU material innovation competition leader; TA for CHEM 110/150 (Dec 2024–May 2025).</li>
-        </ul>
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:guofan.zhang@duke.edu">guofan.zhang@duke.edu</a>. ORCID: <a href="https://orcid.org/0000-0002-1995-5355" target="_blank" rel="noopener">0000‑0002‑1995‑5355</a>. Location: Durham, NC.</p>
+        <p>Email: <a href="mailto:guofan.zhang@duke.edu">guofan.zhang@duke.edu</a>. ORCID: <a href="https://orcid.org/0000-0002-1995-5355" target="_blank" rel="noopener">0000-0002-1995-5355</a>. Location: Durham, NC.</p>
       </section>
 
-      <p class="footer">© <span id="y"></span> Gwofan Zhang • Built with GitHub Pages • Theme inspired by <a href="https://www.ngarabird.com/" target="_blank" rel="noopener">ngarabird.com</a></p>
+      <p class="footer">© <span id="y"></span> Gwofan Zhang · Built with GitHub Pages · Theme inspired by <a href="https://www.ngarabird.com/" target="_blank" rel="noopener">ngarabird.com</a></p>
     </main>
   </div>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
-
-<!-- ====================== coffee.html (new page) ====================== -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coffee — Gwofan Zhang</title>
-  <meta name="description" content="Gwofan Zhang — Coffee log: beans, brew methods, tasting notes." />
-  <link rel="canonical" href="https://gwofanzhang.github.io/coffee.html" />
-  <style>
-    :root { --bg:#ffffff; --text:#1f2937; --muted:#6b7280; --accent:#0ea5e9; --card:#f8fafc; --line:#e5e7eb; }
-    @media (prefers-color-scheme: dark){ :root{ --bg:#0b1220; --text:#e5e7eb; --muted:#9ca3af; --accent:#38bdf8; --card:#0f172a; --line:#1f2937; } }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px 16px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
-    .title{font-weight:700;font-size:1.25rem}
-    .pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:transparent}
-    .grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
-    h2{margin:0 0 10px;font-size:1.1rem}
-    label{display:block;margin:6px 0 2px;color:var(--muted);font-size:.9rem}
-    input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text)}
-    textarea{min-height:70px}
-    button{padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--accent);color:white;cursor:pointer}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
-    .muted{color:var(--muted)}
-    .row{display:flex;gap:10px}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="title">☕ Coffee Log — Gwofan Zhang</div>
-      <nav>
-        <a class="pill" href="/">← Home</a>
-        <a class="pill" href="#log">Brew Log</a>
-        <a class="pill" href="#beans">Beans</a>
-      </nav>
-    </header>
-
-    <div class="grid">
-      <!-- Sidebar: Add Entry / Filters -->
-      <aside class="card">
-        <h2>Add a Brew</h2>
-        <form id="brewForm">
-          <label>Bean / Blend</label>
-          <input name="bean" placeholder="Yirgacheffe Natural" required />
-          <label>Roaster</label>
-          <input name="roaster" placeholder="XYZ Roasters" />
-          <div class="row">
-            <div style="flex:1">
-              <label>Origin</label>
-              <input name="origin" placeholder="Ethiopia" />
-            </div>
-            <div style="flex:1">
-              <label>Roast Date</label>
-              <input name="roastDate" type="date" />
-            </div>
-          </div>
-          <div class="row">
-            <div style="flex:1">
-              <label>Method</label>
-              <select name="method">
-                <option>V60</option>
-                <option>Aeropress</option>
-                <option>Espresso</option>
-                <option>French Press</option>
-                <option>Drip</option>
-              </select>
-            </div>
-            <div style="flex:1">
-              <label>Ratio (g coffee : g water)</label>
-              <input name="ratio" placeholder="15:250" />
-            </div>
-          </div>
-          <div class="row">
-            <div style="flex:1">
-              <label>Grind</label>
-              <input name="grind" placeholder="Comandante 24" />
-            </div>
-            <div style="flex:1">
-              <label>Temp (°C)</label>
-              <input name="temp" type="number" step="0.1" placeholder="92" />
-            </div>
-          </div>
-          <div class="row">
-            <div style="flex:1">
-              <label>Time (mm:ss)</label>
-              <input name="time" placeholder="02:30" />
-            </div>
-            <div style="flex:1">
-              <label>Rating (1-10)</label>
-              <input name="rating" type="number" min="1" max="10" />
-            </div>
-          </div>
-          <label>Notes</label>
-          <textarea name="notes" placeholder="Tasting notes, bloom, pours, etc."></textarea>
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <button type="submit">Save Brew</button>
-            <button type="button" id="exportBtn" title="Download JSON">Export</button>
-            <button type="button" id="clearBtn" title="Clear all">Clear</button>
-          </div>
-          <p class="muted" style="margin-top:8px">Data is saved locally in your browser (localStorage).</p>
-        </form>
-
-        <hr style="border:none;border-top:1px dashed var(--line);margin:16px 0" />
-        <h2>Filter</h2>
-        <label>Method</label>
-        <select id="filterMethod">
-          <option value="">All</option>
-          <option>V60</option>
-          <option>Aeropress</option>
-          <option>Espresso</option>
-          <option>French Press</option>
-          <option>Drip</option>
-        </select>
-        <label style="margin-top:8px">Search</label>
-        <input id="filterText" placeholder="bean / roaster / notes" />
-      </aside>
-
-      <!-- Main: Log Table & Beans Directory -->
-      <main>
-        <section id="log" class="card">
-          <h2>Brew Log</h2>
-          <table id="logTable">
-            <thead>
-              <tr>
-                <th>Date</th><th>Method</th><th>Bean</th><th>Roaster</th><th>Ratio</th><th>Temp</th><th>Time</th><th>Rating</th><th>Notes</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </section>
-
-        <section id="beans" class="card">
-          <h2>Beans Directory</h2>
-          <p class="muted">Unique beans you brewed, auto‑collected from the log.</p>
-          <ul id="beanList"></ul>
-        </section>
-      </main>
-    </div>
-
-    <p class="muted" style="text-align:center;margin-top:20px">© <span id="y"></span> Gwofan Zhang • <a href="/">Back to Home</a></p>
-  </div>
-
-  <script>
-    const LS_KEY = 'coffee_brews_v1';
-    const byId = id => document.getElementById(id);
-    const tbody = document.querySelector('#logTable tbody');
-    const beanList = byId('beanList');
-
-    function loadBrews(){
-      try{ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }catch(e){ return []; }
-    }
-    function saveBrews(data){ localStorage.setItem(LS_KEY, JSON.stringify(data)); }
-
-    function render(){
-      const data = loadBrews();
-      const method = byId('filterMethod').value.toLowerCase();
-      const text = byId('filterText').value.toLowerCase();
-      tbody.innerHTML = '';
-      const filtered = data.filter(d => (!method || d.method.toLowerCase()===method) &&
-        (!text || JSON.stringify(d).toLowerCase().includes(text)));
-      filtered.sort((a,b)=> new Date(b.date)-new Date(a.date));
-      for(const d of filtered){
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${d.date||''}</td><td>${d.method||''}</td><td>${d.bean||''}</td><td>${d.roaster||''}</td><td>${d.ratio||''}</td><td>${d.temp||''}</td><td>${d.time||''}</td><td>${d.rating||''}</td><td>${d.notes||''}</td>`;
-        tbody.appendChild(tr);
-      }
-      // beans directory
-      const uniq = [...new Map(data.map(x=>[`${x.bean}|${x.roaster}`, x])).values()];
-      beanList.innerHTML = uniq.map(x=>`<li><strong>${x.bean||'Unknown'}</strong> — ${x.roaster||'Roaster'} <span class="muted">(${x.origin||'Origin'})</span></li>`).join('');
-    }
-
-    // seed sample if empty
-    if(loadBrews().length===0){
-      saveBrews([
-        {date:new Date().toISOString().slice(0,10), method:'V60', bean:'Yirgacheffe Natural', roaster:'Demo Roastery', origin:'Ethiopia', ratio:'15:250', grind:'24', temp:92, time:'02:30', rating:8, notes:'Berry, jasmine, syrupy.'}
-      ]);
-    }
-
-    document.getElementById('brewForm').addEventListener('submit', e=>{
-      e.preventDefault();
-      const fd = new FormData(e.target);
-      const entry = Object.fromEntries(fd.entries());
-      entry.date = new Date().toISOString().slice(0,10);
-      const list = loadBrews();
-      list.push(entry); saveBrews(list); e.target.reset(); render();
-    });
-    byId('filterMethod').addEventListener('change', render);
-    byId('filterText').addEventListener('input', render);
-    byId('exportBtn').addEventListener('click', ()=>{
-      const blob = new Blob([localStorage.getItem(LS_KEY)||'[]'], {type:'application/json'});
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'coffee_brews.json'; a.click();
-    });
-    byId('clearBtn').addEventListener('click', ()=>{ if(confirm('Clear all local coffee logs?')){ localStorage.removeItem(LS_KEY); render(); }});
-
-    byId('y').textContent = new Date().getFullYear();
-    render();
   </script>
 </body>
 </html>
